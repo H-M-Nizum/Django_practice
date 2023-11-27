@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 style="text-align: center; color: red">This is context from</h1>
+
+    <br />
+    <!-- Recive data from a backend dictionary from it's means contex -->
+    <hr />
+    <caption>
+      Recive data from a backend dictionary from it's means contex
+    </caption>
+    <hr />
+
+    <h3>Name : {{name}}</h3>
+    <h3>Age : {{age}}</h3>
+    <h3>Language : {{language}}</h3>
+
+    <!-- use conditional statement -->
+    <hr />
+    <caption>
+      use conditional statement
+    </caption>
+    <hr />
+
+    {% if age >= 18 and age < 50 %}
+    <p>MR. {{name}} is a young man</p>
+    {% elif age >= 50 %}
+    <p>MR. {{name}} is a old man</p>
+    {% else %}
+    <p>MR. {{name}} is a child</p>
+    {% endif %}
+
+    <!-- use loop statement -->
+    <hr />
+    <caption>
+      use loop statement
+    </caption>
+    <hr />
+
+    {% for i in language %}
+    <p>{{i}}</p>
+    {% endfor %}
+
+    <!-- using loop and condition togethar -->
+    <hr />
+    <caption>
+      using loop and condition togethar
+    </caption>
+    <hr />
+
+    {% for i in courses %} {% if i.id == 2 %}
+    <h3>Couser name is {{i.title}} and total class = {{i.classes}}</h3>
+    {% else %}
+    <h3>This is different id</h3>
+    {% endif %} {% endfor %}
+  </body>
+</html>
