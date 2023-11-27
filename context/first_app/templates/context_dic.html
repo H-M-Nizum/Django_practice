@@ -58,5 +58,97 @@
     {% else %}
     <h3>This is different id</h3>
     {% endif %} {% endfor %}
+
+
+    <!-- django template filter   variable | filter_name  -->
+    <hr />
+    <p>
+      ###################################################################################################
+    </p>
+    <h1>Django template filter syntex :-</h1>
+    <p>
+      ###################################################################################################
+    </p>
+    <hr />
+
+    <!-- join filter -->
+    <hr />
+    <caption>
+      ### using join filter
+    </caption>
+    <hr />
+
+    <h3>{{ language | join:"___" }}</h3>
+
+    <!-- Arithrometic calculation filter -->
+    <hr />
+    <caption>
+      ### Arithrometic calculation filter
+    </caption>
+    <hr />
+
+    <h3>{{ 25 | add:'5' }}</h3>
+
+    <!-- capfirst => The capfirst filter is used to capitalize the first character of the value. -->
+    <!-- cut filter => remove all whitespace and remove all occurrences -->
+    <!-- First filter => The first filter is used to get the first item in a list. -->
+    <!-- last filter => The last filter is used to get the last item in a list. -->
+    <!-- length filter => count list and string length -->
+    <hr />
+    <caption>
+      ### capfirst filter, lower filter, upper filter, Title filter, cut filter,
+      Dictsort Filter, Escape Filter, First filter, last filter, length filter,
+      linenumbers filter, Random Filter, slice filter, truncatechars filter ,
+      truncatewords filter, Wordcount Filter
+    </caption>
+
+    <h3>{{'capfirst filter' | capfirst}}</h3>
+
+    <h3>
+      {{'The lower filter is used to convert a string to lowercase. ' | lower}}
+    </h3>
+    <h3>
+      {{'The upper filter is used to convert a string to uppercase. ' | upper}}
+    </h3>
+
+    <h3>{{'The first letter of each word is capitalized.' | title}}</h3>
+    <h3>{{'cut Filter Remove All Whitespace' | cut:" " }}</h3>
+    <p>
+      ###### Escape filter ######### <br />
+      < is converted to &lt; <br />
+      > is converted to &gt; <br />
+      ' (single quote) is converted to &#x27; <br />
+      " (double quote) is converted to &quot; <br />
+      & is converted to &amp;
+    </p>
+
+    <h3>{{language | first}}</h3>
+    <h3>{{language | last}}</h3>
+    <h3>{{language | length}}</h3>
+    <!-- count list length -->
+    <h3>{{language | first | length}}</h3>
+    <!-- count list first item string length -->
+
+    <!-- numbering iteam -->
+    <h3>{{language | linenumbers }}</h3>
+
+    <!-- Random Filter
+The random filter is used to return a random item from the given list. -->
+
+    <h3>{{language | random}}</h3>
+
+    <!-- The slice filter is used to return a slice of the given list. This filter will cut off a part of the list from the given index and returns a new list. -->
+
+    <h3>{{language | slice:":2"}}</h3>
+    <h3>{{language | slice:"2:"}}</h3>
+
+    <!-- The truncatechars filter and truncatechars filter is used to truncate a string if it is longer than the specified number of characters. Truncated strings will end with an ellipsis character (…). -->
+
+    <p>{{ 'The truncatechars filter and truncatechars' | truncatechars:16 }}</p>
+    <p>{{ 'The truncatechars filter and truncatechars' | truncatewords:3 }}</p>
+    <p>{{ 'The truncatechars filter and truncatechars' | wordcount }}</p>
+  </body>
+</html>
+
   </body>
 </html>
