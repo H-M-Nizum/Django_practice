@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>This is context and django template language practice page</h1>
+
+
+
+
+
+    <!-- add filter => add two number -->
+    <h1> value + 20 = {{ value | add:'20' }}</h1>
+
+    <!-- addslashes filter => add slashes before quotes -->
+    <h1>addslashes filter: {{"I'am Django" | addslashes}}</h1>
+
+    <!-- capfirst => capitalize the first character -->
+    <h3> capitalize the first character : {{name | capfirst}}</h3>
+
+    <!-- center	 -->
+    <h3> center : {{name | center:'35'}}</h3>
+
+    <!-- cut => remove all occurrences-->
+    <h3>{{string | cut:" " }}</h3>
+    <h3>{{'django is be/st' | cut:"/" }}</h3>
+
+    <!-- date format a date according to the given format import datetime-->
+    <h3>{{birthday | date:"D d M Y"}}</h3>
+    <h3>{{birthday | date:"d M Y"}}</h3>
+
+    <!-- default =? if variable contain value then show this value else show another massage.-->
+
+    <h3>{{ value | default:"nothing" }}</h3>
+    <h3>{{ emptyvalue | default:"nothing contain emptyvalue" }}</h3>
+
+    <!-- dictsort => sort a dictonary base on any key -->
+    <h3>sort by name : {{d | dictsort:"name"}}</h3>
+    <h3>sort by age : {{d | dictsort:"age"}}</h3>
+
+    <!-- divisibleby => check a number divisible or not in another number-->
+    <h3>divisibleby: {{ value | divisibleby:"3" }}</h3>
+    <h3>divisibleby: {{ value | divisibleby:"4" }}</h3>
+    <!-- This value is 30. so 30/3 is true but 30/4 is not true -->
+
+    <!-- escape => some escape for used in string ((< , &lt), (>, &gt), (', &#x27), (", &quot), (&, &amp))-->
+    <h3>&#x27 30 &#x27 &lt &quot 50 &quot &amp &#x27 30 &#x27 &gt &quot 10 &quot</h3>
+    <!-- output = ' 30 ' < " 50 " & ' 30 ' > " 10 " -->
+
+    <!-- filesizeformat => It is used to format the value like a ‘human-readable’ file size -->
+    <h3>filesizeformat: {{value | filesizeformat}} </h3>
+    
+
+    <!-- first => return the first item in the list-->
+    <h3>first: {{language | first}} </h3> 
+
+    <!-- join => join a string , list -->
+    <h3>join: {{language | join:" _ "}} </h3>
+
+    <!-- last => return the last item in the lis-->
+    <h3>last: {{language | last}} </h3> 
+
+    <!-- length => return the length string, list -->
+    <h3> length: {{language | length}} </h3> 
+
+    <!-- linenumbers => It is used to display text with line numbers  -->
+    <h3>linenumbers: {{line | linenumbers}} </h3>
+
+
+    <!-- lower  => converts a string into all lowercase -->
+    <h3> lower: {{string | lower}} </h3>
+
+    <!-- upper  => converts a string into all uppercase -->
+    <h3>upper: {{string | upper}} </h3>
+
+    <!-- make_list => return a list  from a string -->
+    <h3>make_list filter : {{string | make_list}} </h3>
+
+    <!-- random => return random iteam from given list-->
+    <h3>random filter: {{language | random}}</h3>
+
+    <!-- slice => slice of the list and string-->
+    <h3>slice filter : {{language | slice:":2"}} </h3>
+    <h3>slice filter : {{language | slice:"3:"}} </h3>
+    <h3>slice filter : {{string | slice:":14"}} </h3>
+
+    <!-- slugify => It converts spaces to hyphens and removes characters that aren’t alphanumerics, underscores, or hyphens. Converts to lowercase. Also strips leading and trailing whitespace. -->
+    <h3>slugify filter : {{string | slugify}} </h3>
+
+    <!-- time	=> time according to the given format -->
+    <h3>time is : {{birthday | time:"H:i" }} </h3>
+
+    <!-- timesince => return difference two date -->
+    <h1> I am {{ mybirthdate|timesince:mydate }} old</h1>
+
+    <!-- title => making words start with an uppercase character and the remaining characters lowercase.  -->
+    <h3>title filter : {{string | title}} </h3>
+
+
+    <!-- unordered_list -->
+    <h1>{{subject | unordered_list}}</h1>
+    <h1>{{language | unordered_list}}</h1>
+
+    <!-- wordcount => return the number of words -->
+    <h3> Number of words is : {{string | wordcount}}</h3>
+
+    <!-- Truncatechars Filter : The truncatechars filter is used to truncate a string if it is longer than the specified number of characters. -->
+
+    <h3>Truncatechars Filter:  {{string | truncatechars:10 }}</h3>
+
+    <!-- Truncatewords Filter => The truncatewords filter is used to truncate a string after a certain number of words -->
+    <h3> Truncatewords Filter: {{string | truncatewords:2 }}</h3>
+
+
+    <!-- Striptags Filter => The striptags is used to remove all [X]HTML tags from the value it is piped against. -->
+
+    <b>I</b> <button>love</button> <span>dogs</span> | striptags
+
+
+    <!-- Pluralize Filter => The pluralize filter is used to return a plural suffix if the value is not 1, ‘1’, or an object of length 1. By default, this suffix is ‘s’. -->
+<h3>You have {{ num_tomato }} tomato {{ num_tomato | pluralize:"es" }}.</h3>
+
+
+
+  </body>
+</html>
