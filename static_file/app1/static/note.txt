@@ -1,0 +1,2 @@
+templates a sudu {% load static %}
+ then {% static 'file name' %}

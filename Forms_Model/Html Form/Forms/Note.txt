@@ -1,0 +1,27 @@
+1.
+<form></form> - we use two tye of method ('post', 'get)
+EX- <form method = 'post'></form> 
+    <form method = 'get'></form>
+
+get use korle url a form ar value gulu show korbe but post use korle korbee na.
+
+
+Then when we use post or get method Django Through error message
+            Forbidden (403)
+            CSRF verification failed. Request aborted.
+
+csrf means -  Cross Site Request Forgery
+its use for security perpos.
+
+<form method = 'post'>
+{% csrf_token %}
+</form>
+
+2. 
+form ar data onnno kono url a show koraite ciale. Tar views theke
+request.POST.get(name) kore data ane contex ar maddome show koraite hobe.
+
+<form action = 'url'></form> 
+form ar action a jei url dibo amra data oi url ar views thei access kore template a show koraite parbo.
+
+Form the data amra bacend a nibo form a name attribute use kore.

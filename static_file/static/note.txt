@@ -1,0 +1,10 @@
+1. globally or outer file a static file use korle setting.py a___
+
+STATICFILES_DIRS = [
+    BASE_DIR/'static',
+]
+
+2. Then templates file static file(picture, video, css, js) use korle a___
+
+ first a = {% load static %}
+ then  = {% static 'filename' %}
