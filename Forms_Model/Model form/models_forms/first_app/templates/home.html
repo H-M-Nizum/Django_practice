@@ -16,7 +16,7 @@
             <th scope="col">Name</th>
             <th scope="col">Father Name</th>
             <th scope="col">Address</th>
-            
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
             <td>{{val.name}}</td>
             <td>{{val.father_nmae}}</td>
             <td>{{val.address}}</td>
-           
+            <td><a class="btn btn-danger" href="{% url 'delete_student' val.roll %}">Delete</a></td>
             
           </tr>
           {% endfor %}
