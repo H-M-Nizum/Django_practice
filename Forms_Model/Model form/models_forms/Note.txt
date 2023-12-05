@@ -1,0 +1,36 @@
+1. 
+model.py a model class create ar por
+
+cmd => 
+    py manage.py makemigrations  ##(convert model class into sql statements.)
+    py manage.py migrate         ##(execute sql statements)
+
+2.
+db.splite dekhar jonne 
+Extention => SQLite , SQLite Viewer
+
+Then Download (https://sqlitebrowser.org/)
+
+3.
+Admin panal a jawyar jonnne supper user create korte hobe.
+
+cmd => python manage.py createsuperuser
+
+4.
+admin.py a model register korte hobe.
+    from . import models
+
+    # Register your models here.
+    admin.site.register(models.model_name)
+
+then admin panal a record dekhanur jonne model.py a
+    def __str__(self):
+    return field_name
+
+5.
+Then frond end data show korar jonne models ke views.py import korte hobe
+variable = models.model_name.objects.all()
+
+
+
+
