@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import models
+from first_app.forms import studentForm
 # Create your views here.
 
 def home(request):
@@ -20,4 +21,5 @@ def delete_student(request, roll):
 
 # for model form
 def model_form(request):
-    return render(request, 'model_form.html') 
+    std = studentForm()
+    return render(request, 'model_form.html', {'form': std}) 
