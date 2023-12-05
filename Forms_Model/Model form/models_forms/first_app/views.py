@@ -16,3 +16,8 @@ def delete_student(request, roll):
     #  pk means primary key
     std = models.Student.objects.get(pk = roll).delete()
     return redirect('home')
+
+
+# for model form
+def model_form(request):
+    return render(request, 'model_form.html') 
