@@ -1,0 +1,32 @@
+1.
+views.py =>
+
+    # djform contain fulll html form.. 
+    # value gulu pawyar jonnne cleaned_data use korte hobe.
+    # filaly form jodi valid hoy tahole amra cleaned_data pabo.
+
+
+2. 
+form ta style ba sundor korar jonnne crispy form use kora hoy.
+
+Installation
+    $ pip install crispy-bootstrap5
+
+setting.py 
+    INSTALLED_APPS = (
+        ...
+        "crispy_forms",
+        "crispy_bootstrap5",
+        ...
+    )
+
+    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+    CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+Then Django_forms.html
+    {% load cripy_forms_tags %}
+
+inside form
+    {{form | crispy}}
