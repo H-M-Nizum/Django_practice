@@ -21,5 +21,12 @@ def delete_student(request, roll):
 
 # for model form
 def model_form(request):
-    std = studentForm()
-    return render(request, 'model_form.html', {'form': std}) 
+   
+    if request.method == 'POST':
+        form = studentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print(form.cleaned_data)
+    else:
+        form = studentForm()
+    return render(request, 'model_form.html', {'form': form}) 
