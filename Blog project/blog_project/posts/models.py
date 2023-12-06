@@ -14,3 +14,7 @@ class Post(models.Model):
     # many to one relationship
     # akjon author multiple post likhe ba muultiple post ar akjon author thakte pare
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    
+    # database a name show korar jonne
+    def __str__(self):
+        return self.title
