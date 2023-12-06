@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Author page{% endblock title %}
+{% block title %}POST page{% endblock title %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container" style="width: 50%; margin: auto">
-    <h1>This is home page</h1>
+    <h1>This is Post page</h1>
     <form method="post">
         {% csrf_token %}
         {{form | crispy}}
