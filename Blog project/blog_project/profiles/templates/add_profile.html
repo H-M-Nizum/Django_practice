@@ -4,8 +4,8 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>This is Profile page</h1>
 <div class="container" style="width: 50%; margin: auto">
+    <h1>This is Profile page</h1>
     <form method="post">
         {% csrf_token %}
         {{form | crispy}}
