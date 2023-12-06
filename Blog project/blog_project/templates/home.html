@@ -20,7 +20,7 @@
                             {% endfor %}
                         </div>
                         <a href="{% url 'edit_post' i.id %}" class="btn btn-warning"> Edit Blog</a>
-                        <a href="#" class="btn btn-danger"> Delete Blog</a>
+                        <a href="{% url 'delete_post' i.id %}" class="btn btn-danger"> Delete Blog</a>
                     </div>
                 </div>
             </div>
