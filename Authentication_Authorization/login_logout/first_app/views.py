@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib import messages
 # Buitin module for authentication, login, logout
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 
 # Create your views here.
 def home(request):
@@ -55,3 +55,38 @@ def profile(request):
 def userlogout(request):
     logout(request)
     return redirect('home')
+
+
+def passward_change(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = PasswordChangeForm(user = request.user, data=request.POST)
+            if form.is_valid():
+                form.save()
+                # password update korbe
+                update_session_auth_hash(request, form.user)
+                return redirect('profile')
+        else:
+            form = PasswordChangeForm(user=request.user)
+            
+        return render(request, 'passwordChange.html', {'form': form})
+
+    else:
+        return redirect('login')
+
+
+def passward_change2(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = SetPasswordForm(user = request.user, data=request.POST)
+            if form.is_valid():
+                form.save()
+                # password update korbe
+                update_session_auth_hash(request, form.user)
+                return redirect('profile')
+        else:
+            form = SetPasswordForm(user=request.user)
+            
+        return render(request, 'passwordChange.html', {'form': form})
+    else:
+        return redirect('login')
