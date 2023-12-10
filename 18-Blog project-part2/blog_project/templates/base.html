@@ -33,7 +33,7 @@
                       <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
                     </li>
                     <li class="nav-item btn btn-info mx-3">
-                      <a class="nav-link text-white" href="{% url 'register' %}">Login</a>
+                      <a class="nav-link text-white" href="{% url 'user_login' %}">Login</a>
                     </li>
                   </ul>
                  
@@ -41,6 +41,20 @@
               </div>
             </div>
           </nav>
+
+          {% for i in messages %}
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <img src="..." class="rounded me-2" alt="...">
+              <strong class="me-auto">Messages</strong>
+            
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              <h3 class="text-{{i.tags}}">{{i}}</h3>
+            </div>
+          </div>
+          {% endfor %}
     </section>
 
     {% block content %}{% endblock content %}

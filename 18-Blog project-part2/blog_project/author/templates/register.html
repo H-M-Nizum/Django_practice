@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container" style="width: 50%; margin: auto">
-    <h1>This is Register page</h1>
+    <h1>This is {{type}} page</h1>
     <form method="post">
         {% csrf_token %}
         {{form | crispy}}
