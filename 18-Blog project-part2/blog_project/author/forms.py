@@ -1,14 +1,10 @@
 from django import forms
-from .models import Author
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
-class AuthorForm(forms.ModelForm):
-    # AuthorForm class ar extra kichu characteristics add korar jonne meta class use kori.
+
+class RegistrationForm(UserCreationForm): 
+    email = forms.CharField(widget=forms.EmailInput(attrs={'id' : 'required'}))
     class Meta:
-        model = Author
-        
-        # specific vabe bolew dite pari kon kon fields thakbe
-        # fields = ['name', 'age' .....]
-        # ANd caile ataw bolte pari konta thakbe na
-        # exclude = ['money'...]
-        # all mane sokol fields rakhte caschi form a
-        fields = '__all__'
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']

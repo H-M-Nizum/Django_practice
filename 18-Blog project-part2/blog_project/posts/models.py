@@ -1,6 +1,6 @@
 from django.db import models
 from categories.models import Category
-from author.models import Author
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Post(models.Model):
@@ -13,7 +13,7 @@ class Post(models.Model):
     
     # many to one relationship
     # akjon author multiple post likhe ba muultiple post ar akjon author thakte pare
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     
     # database a name show korar jonne
     def __str__(self):
