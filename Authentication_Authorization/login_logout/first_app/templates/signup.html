@@ -10,7 +10,7 @@
     {% if messages %} 
         {% for m in messages %}     
         <!-- extra conditional css -->
-        <h3 {% if m.tags %} class="{{m.tags}}" {% endif %} >{{m}}</h3>
+        <h3 class="bg-success p-3 text-white"  >{{m}}</h3>
         {% endfor %}
         
     {% endif %}

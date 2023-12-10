@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, changeUserData
 from django.contrib import messages
 # Buitin module for authentication, login, logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
@@ -48,9 +48,18 @@ def userlogin(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        return render(request, 'profile.html', {'user': request.user})
+        if request.method == 'POST':
+            form = changeUserData(request.POST, instance= request.user)
+            if form.is_valid():
+                messages.success(request, 'Account updated succesfully')
+                form.save()
+                print(form.cleaned_data)
+        else:
+            form = changeUserData(instance= request.user)
+        return render(request, 'profile.html', {'form': form})
     else:
-        return redirect('login')
+        return redirect('signup')
+    
     
 def userlogout(request):
     logout(request)
@@ -93,3 +102,18 @@ def passward_change2(request):
     
     
     # change password end
+
+
+def change_user_data(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = changeUserData(request.POST, instance= request.user)
+            if form.is_valid():
+                messages.success(request, 'Account updated succesfully')
+                form.save()
+                print(form.cleaned_data)
+        else:
+            form = changeUserData()
+        return render(request, 'profile.html', {'form': form})
+    else:
+        return redirect('signup')

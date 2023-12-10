@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
@@ -7,6 +7,38 @@
 <h1 style="text-align: center; color:tomato">This is My Profile page</h1>
 <h1 style="text-align: center; color:tomato">Hell0 {{user}}</h1>
 
-<p style="text-align: center;"><a href="{% url 'passwordChange' %}">Change your password</a></p>
-<p style="text-align: center;"><a href="{% url 'passwordChange2' %}">Change your password without old password</a></p>
+<p style="text-align: center;"><a class="btn btn-info" href="{% url 'passwordChange' %}">Change your password</a>
+<a class="btn btn-danger" href="{% url 'passwordChange2' %}">Change your password without old password</a></p>
+
+
+<div class="container">
+    {% if messages %} 
+        {% for m in messages %}     
+        <!-- extra conditional css -->
+        <h3 class="bg-success p-3 text-white" >{{m}}</h3>
+        {% endfor %}
+        
+    {% endif %}
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <!-- if unauthorize user try for login show a error message -->
+        {% if form.non_field_errors %}
+        {% for er in form.non_field_errors %}
+            <p class="bg-danger text-white p-3">{{er}}</p>
+        {% endfor %}
+        {% endif %}
+    
+        <!-- show login page -->
+        <!-- {{form | crispy}} -->
+        {% for fm in form %}
+        {{fm.label_tag}}
+        {{fm}}
+        {{fm.errors | striptags}}
+        <br>
+        {% endfor %}
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
 {% endblock content %}
