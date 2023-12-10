@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Signup{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <h1>Hello, world!</h1>
+    {% if messages %} 
+        {% for m in messages %}     
+        <!-- extra conditional css -->
+        <h3 {% if m.tags %} class="{{m.tags}}" {% endif %} >{{m}}</h3>
+        {% endfor %}
+        
+    {% endif %}
+    <form method="post" novalidate>
+        <!-- {{form | crispy}} -->
+        {% csrf_token %}
+        {% for fm in form %}
+        {{fm.label_tag}}
+        {{fm}}
+        {{fm.errors | striptags}}
+        <br>
+        {% endfor %}
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+{% endblock content %}
