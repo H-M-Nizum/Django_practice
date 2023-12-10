@@ -90,3 +90,6 @@ def passward_change2(request):
         return render(request, 'passwordChange.html', {'form': form})
     else:
         return redirect('login')
+    
+    
+    # change password end
