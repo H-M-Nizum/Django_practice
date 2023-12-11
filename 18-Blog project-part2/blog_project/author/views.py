@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import forms
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 
 # for check login or not
@@ -62,7 +62,7 @@ def user_login(request):
 @login_required    
 def profileupdate(request):
     if request.method == 'POST':
-        profile_form = forms.updateProfileForm(request.POST, instance=request.user)
+        profile_form = PasswordChangeForm(request.POST, instance=request.user)
         if profile_form.is_valid():
             profile_form.save()
             messages.success(request, 'Update profile successfully')
@@ -71,3 +71,18 @@ def profileupdate(request):
     else:
         profile_form = forms.updateProfileForm(instance=request.user)
     return render(request, 'profile.html', {'form': profile_form})
+
+
+
+def password_change(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'password update successfully')
+            return redirect('user_profile')
+        
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'pass_change.html', {'form': form})
