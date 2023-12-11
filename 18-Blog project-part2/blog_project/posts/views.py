@@ -7,6 +7,7 @@ def add_post(request):
     if request.method == 'POST':
         post_form = forms.PostForm(request.POST)
         if post_form.is_valid():
+            post_form.instance.author = request.user
             post_form.save()
             return redirect('add_post')
     else:

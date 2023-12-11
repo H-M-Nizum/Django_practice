@@ -61,6 +61,11 @@ def user_login(request):
             
 @login_required    
 def profileupdate(request):
+    
+    return render(request, 'profile.html')
+
+@login_required    
+def edit_profile(request):
     if request.method == 'POST':
         profile_form = PasswordChangeForm(request.POST, instance=request.user)
         if profile_form.is_valid():
@@ -70,7 +75,7 @@ def profileupdate(request):
         
     else:
         profile_form = forms.updateProfileForm(instance=request.user)
-    return render(request, 'profile.html', {'form': profile_form})
+    return render(request, 'update_profile.html', {'form': profile_form})
 
 
 
@@ -86,3 +91,5 @@ def password_change(request):
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'pass_change.html', {'form': form})
+
+
