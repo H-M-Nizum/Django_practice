@@ -22,7 +22,7 @@ def register(request):
         if register_form.is_valid():
             register_form.save()
             messages.success(request, 'Account created successfully')
-            return redirect('register')
+            return redirect('user_login')
         
     else:
         register_form = forms.RegistrationForm()
@@ -33,16 +33,23 @@ def user_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            user_name = form.cleaned_data['username']
-            user_pass = form.cleaned_data['password']
-            user = authenticate(username = user_name, passsword = user_pass)
-            if user is not None:
-                messages.success(request, 'Account login successfully')
-                login(request, user)
-                return redirect('profile')
-            else:
-                messages.warning(request, 'Login info incorrect')
-                return redirect('register')
+           user_name = form.cleaned_data['username']
+           user_pass = form.cleaned_data['password']
+           user = authenticate(username = user_name, password=user_pass)
+           
+           if user is not None:
+               messages.success(request, 'Loged in successfully')
+               login(request, user)
+               return redirect('register')
+           
+           
+           else:
+                messages.warning(request, 'login information incorrect')
+                return redirect('user_login')
+            
+        else:
+            messages.warning(request, 'not a valid user')
+            return redirect('home')
             
     else:
         form = AuthenticationForm()

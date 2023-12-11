@@ -19,40 +19,44 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
-                  </li>
-                  <li class="nav-item">
+                  {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
+                    </li>
+                  {% endif %}
+                  <!-- <li class="nav-item">
                     <a class="nav-link" href="{% url 'add_categories' %}">Add Categories</a>
-                  </li>
+                  </li> -->
                  
                 </ul>
                 <div class="d-flex">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item btn btn-success ">
+                      <a class="nav-link text-white" href="{% url 'register' %}">Profile</a>
+                    </li>
+                    <li class="nav-item btn btn-info mx-3">
+                      <a class="nav-link text-white" href="{% url 'user_login' %}">Logout</a>
+                    </li>
+                    {% else %}
+  
                     <li class="nav-item btn btn-success ">
                       <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
                     </li>
                     <li class="nav-item btn btn-info mx-3">
                       <a class="nav-link text-white" href="{% url 'user_login' %}">Login</a>
                     </li>
+                    {% endif %}
+                    
                   </ul>
-                 
                 </div>
               </div>
             </div>
           </nav>
 
           {% for i in messages %}
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-              <img src="..." class="rounded me-2" alt="...">
-              <strong class="me-auto">Messages</strong>
-            
-              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-              <h3 class="text-{{i.tags}}">{{i}}</h3>
-            </div>
+          <div>
+            <h3 class="text-{{i.tags}}">{{i}}</h3>
           </div>
           {% endfor %}
     </section>
