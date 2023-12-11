@@ -3,6 +3,10 @@ from . import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+# for check login or not
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 # def add_author(request):
@@ -40,7 +44,7 @@ def user_login(request):
            if user is not None:
                messages.success(request, 'Loged in successfully')
                login(request, user)
-               return redirect('register')
+               return redirect('user_profile')
            
            
            else:
@@ -55,3 +59,15 @@ def user_login(request):
         form = AuthenticationForm()
         return render(request, 'register.html', {'form': form, 'type': 'Login'})
             
+@login_required    
+def profileupdate(request):
+    if request.method == 'POST':
+        profile_form = forms.updateProfileForm(request.POST, instance=request.user)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Update profile successfully')
+            return redirect('user_profile')
+        
+    else:
+        profile_form = forms.updateProfileForm(instance=request.user)
+    return render(request, 'profile.html', {'form': profile_form})
