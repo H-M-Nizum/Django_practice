@@ -6,6 +6,7 @@ from django.contrib import messages
 
 # for check login or not
 from django.contrib.auth.decorators import login_required
+from posts.models import Post
 
 # Create your views here.
 
@@ -33,6 +34,7 @@ def register(request):
     return render(request, 'register.html', {'form': register_form, 'type': 'register'})
 
 
+
 def user_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
@@ -58,11 +60,14 @@ def user_login(request):
     else:
         form = AuthenticationForm()
         return render(request, 'register.html', {'form': form, 'type': 'Login'})
+   
+   
             
 @login_required    
 def profileupdate(request):
-    
-    return render(request, 'profile.html')
+    data = Post.objects.filter(author = request.user)
+    return render(request, 'profile.html', {'data':data})
+
 
 @login_required    
 def edit_profile(request):
@@ -93,3 +98,7 @@ def password_change(request):
     return render(request, 'pass_change.html', {'form': form})
 
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect('user_login')
